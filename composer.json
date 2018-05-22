@@ -1,0 +1,54 @@
+{
+    "name": "flagrow/amazon-affiliation",
+    "description": "Add your Amazon Affiliate tag to Amazon links",
+    "keywords": [
+        "extension",
+        "flarum",
+        "flagrow",
+        "amazon",
+        "affiliation",
+        "links"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clark Winkelmann",
+            "email": "clark.winkelmann@gmail.com",
+            "homepage": "https://clarkwinkelmann.com/"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/flagrow/amazon-affiliation/issues",
+        "source": "https://github.com/flagrow/amazon-affiliation"
+    },
+    "require": {
+        "flarum/core": "^0.1.0-beta.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Flagrow Amazon Affiliation",
+            "icon": {
+                "name": "amazon",
+                "backgroundColor": "#f4f4f4",
+                "color": "#5f4bb6"
+            }
+        },
+        "flagrow": {
+            "discuss": "#"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Flagrow\\AmazonAffiliation\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Flagrow\\AmazonAffiliation\\Tests\\": "tests/"
+        }
+    }
+}
