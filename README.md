@@ -1,10 +1,12 @@
 # Amazon Affiliation by ![Flagrow logo](https://avatars0.githubusercontent.com/u/16413865?v=3&s=20) [Flagrow](https://discuss.flarum.org/d/1832-flagrow-extension-developer-group), a project of [Gravure](https://gravure.io/)
 
-[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/flagrow/amazon-affiliation/blob/master/LICENSE.md) [![Build status](https://travis-ci.org/flagrow/amazon-affiliation.svg?branch=master)](https://travis-ci.org/flagrow/amazon-affiliation) [![Latest Stable Version](https://img.shields.io/packagist/v/flagrow/amazon-affiliation.svg)](https://packagist.org/packages/flagrow/amazon-affiliation) [![Total Downloads](https://img.shields.io/packagist/dt/flagrow/amazon-affiliation.svg)](https://packagist.org/packages/flagrow/amazon-affiliation) [![Donate](https://img.shields.io/badge/paypal-support-yellow.svg)](https://www.paypal.me/gravure) [![Join our Discord server](https://discordapp.com/api/guilds/240489109041315840/embed.png)](https://flagrow.io/join-discord)
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/flagrow/amazon-affiliation/blob/master/LICENSE.md) [![Build status](https://travis-ci.org/flagrow/amazon-affiliation.svg?branch=master)](https://travis-ci.org/flagrow/amazon-affiliation) [![Latest Stable Version](https://img.shields.io/packagist/v/flagrow/amazon-affiliation.svg)](https://packagist.org/packages/flagrow/amazon-affiliation) [![Total Downloads](https://img.shields.io/packagist/dt/flagrow/amazon-affiliation.svg)](https://packagist.org/packages/flagrow/amazon-affiliation) [![Support Us](https://img.shields.io/badge/flagrow.io-support%20us-yellow.svg)](https://flagrow.io/support-us) [![Join our Discord server](https://discordapp.com/api/guilds/240489109041315840/embed.png)](https://flagrow.io/join-discord)
 
 This extension allows you to inject your Amazon Affiliate Tag to all Amazon links on the forum.
 
 The initial version of this extension was sponsored by [profesionalreview.com](https://www.profesionalreview.com/).
+
+If you're only looking to build custom affiliate links for other programs, check out our [Affiliation Links extension](https://github.com/flagrow/affiliation-links).
 
 ## Installation
 
@@ -24,9 +26,7 @@ php flarum cache:clear
 
 ## Support our work
 
-Check out our premium extensions at [flagrow.io](https://flagrow.io/).
-
-Just want to support our free extensions ? You can also donate [via Paypal](https://www.paypal.me/gravure).
+Check out how to support Flagrow extensions at [flagrow.io/support-us](https://flagrow.io/support-us).
 
 ## Security
 
@@ -36,7 +36,7 @@ Please include as many details as possible. You can use `php flarum info` to get
 
 ## Links
 
-- [Flarum Discuss post](#)
+- [Flarum Discuss post](https://discuss.flarum.org/d/12389-flagrow-amazon-affiliation-add-your-affiliate-tag-to-links)
 - [Source code on GitHub](https://github.com/flagrow/amazon-affiliation)
 - [Report an issue](https://github.com/flagrow/amazon-affiliation/issues)
 - [Download via Packagist](https://packagist.org/packages/flagrow/amazon-affiliation)
