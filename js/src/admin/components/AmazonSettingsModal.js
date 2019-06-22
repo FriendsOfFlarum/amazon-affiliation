@@ -1,7 +1,7 @@
 import app from 'flarum/app';
 import SettingsModal from 'flarum/components/SettingsModal';
 import Switch from 'flarum/components/Switch';
-import locales from 'flagrow/amazon-affiliation/amazonAssociatesLocales';
+import locales from '../amazonAssociatesLocales';
 
 const settingsPrefix = 'flagrow-amazon-affiliation.';
 const translationPrefix = 'flagrow-amazon-affiliation.admin.settings.';
