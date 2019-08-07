@@ -8,7 +8,7 @@ use FoF\AmazonAffiliation\AmazonLinkManipulator;
 
 class LinkManipulatorProvider extends AbstractServiceProvider
 {
-    const SETTINGS_PREFIX = 'flagrow-amazon-affiliation.affiliate-tag.';
+    const SETTINGS_PREFIX = 'fof-amazon-affiliation.affiliate-tag.';
 
     public function register()
     {
