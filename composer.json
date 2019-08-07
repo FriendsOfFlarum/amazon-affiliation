@@ -1,54 +1,50 @@
 {
-    "name": "flagrow/amazon-affiliation",
-    "description": "Add your Amazon Affiliate tag to Amazon links",
-    "keywords": [
-        "extension",
-        "flarum",
-        "flagrow",
-        "amazon",
-        "affiliation",
-        "links"
-    ],
-    "type": "flarum-extension",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Clark Winkelmann",
-            "email": "clark.winkelmann@gmail.com",
-            "homepage": "https://clarkwinkelmann.com/"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/flagrow/amazon-affiliation/issues",
-        "source": "https://github.com/flagrow/amazon-affiliation"
+  "name": "fof/amazon-affiliation",
+  "description": "Add your Amazon Affiliation tag to Amazon links",
+  "keywords": [
+    "extension",
+    "flarum",
+    "flagrow",
+    "amazon",
+    "affiliation",
+    "links"
+  ],
+  "type": "flarum-extension",
+  "license": "MIT",
+  "require": {
+    "flarum/core": "^0.1.0-beta.9"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "8.3.3"
+  },
+  "authors": [
+    {
+      "name": "Clark Winkelmann",
+      "email": "clark.winekelmann@gmail.com",
+      "role": "Developer"
     },
-    "require": {
-        "flarum/core": "^0.1.0-beta.7"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.0"
-    },
-    "extra": {
-        "flarum-extension": {
-            "title": "Flagrow Amazon Affiliation",
-            "icon": {
-                "name": "amazon",
-                "backgroundColor": "#f4f4f4",
-                "color": "#5f4bb6"
-            }
-        },
-        "flagrow": {
-            "discuss": "https://discuss.flarum.org/d/12389-flagrow-amazon-affiliation-add-your-affiliate-tag-to-links"
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "Flagrow\\AmazonAffiliation\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Flagrow\\AmazonAffiliation\\Tests\\": "tests/"
-        }
+    {
+      "name": "Christian Lopez",
+      "email": "Christian.L@redevs.org",
+      "role": "Developer"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "FoF\\AmazonAffiliation\\": "src/"
+    }
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "FoF Amazon Affiliation",
+      "icon": {
+        "name": "fab fa-amazon",
+        "backgroundColor": "#ad343e",
+        "color": "#fff"
+      }
+    },
+    "flagrow": {
+      "discuss": ""
+    }
+  }
 }

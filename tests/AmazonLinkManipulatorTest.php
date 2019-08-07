@@ -1,8 +1,8 @@
 <?php
 
-namespace Flagrow\AmazonAffiliation\Tests;
+namespace FoF\AmazonAffiliation\Tests;
 
-use Flagrow\AmazonAffiliation\AmazonLinkManipulator;
+use FoF\AmazonAffiliation\AmazonLinkManipulator;
 use PHPUnit\Framework\TestCase;
 use Zend\Diactoros\Uri;
 

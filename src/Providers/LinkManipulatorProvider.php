@@ -1,8 +1,9 @@
 <?php
 
-namespace Flagrow\AmazonAffiliation\Providers;
 
-use Flagrow\AmazonAffiliation\AmazonLinkManipulator;
+namespace FoF\AmazonAffiliation\Providers;
+
+use FoF\AmazonAffiliation\AmazonLinkManipulator;
 use Flarum\Foundation\AbstractServiceProvider;
 use Flarum\Settings\SettingsRepositoryInterface;
 
@@ -33,8 +34,8 @@ class LinkManipulatorProvider extends AbstractServiceProvider
             $manipulator = new AmazonLinkManipulator();
 
             $manipulator->affiliateTags = $tags;
-            $manipulator->keepExistingTag = (bool)$settings->get('flagrow-amazon-affiliation.keep-existing-tag', false);
-            $manipulator->removeTagIfUnhandled = (bool)$settings->get('flagrow-amazon-affiliation.remove-tag-if-unhandled', false);
+            $manipulator->keepExistingTag = (bool)$settings->get('fof-amazon-affiliation.keep-existing-tag', false);
+            $manipulator->removeTagIfUnhandled = (bool)$settings->get('fof-amazon-affiliation.remove-tag-if-unhandled', false);
 
             return $manipulator;
         });

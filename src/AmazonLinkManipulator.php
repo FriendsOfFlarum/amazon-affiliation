@@ -1,6 +1,6 @@
 <?php
 
-namespace Flagrow\AmazonAffiliation;
+namespace FoF\AmazonAffiliation;
 
 use Illuminate\Support\Arr;
 use Psr\Http\Message\UriInterface;
@@ -41,7 +41,7 @@ class AmazonLinkManipulator
         }
 
         return $uri
-            // Always make the sceme https
+            // Always make the scheme https
             ->withScheme('https')
             // Always add www subdomain
             ->withHost('www.' . $amazonDomain)
