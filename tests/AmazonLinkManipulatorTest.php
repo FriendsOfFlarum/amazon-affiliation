@@ -26,7 +26,7 @@ class AmazonLinkManipulatorTest extends TestCase
         $uri = $manipulator->process(new Uri('https://www.amazon.com/dp/B00004TZY8'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals('https://www.amazon.com/dp/B00004TZY8?tag=abcdef', (string)$uri);
+        $this->assertEquals('https://www.amazon.com/dp/B00004TZY8?tag=abcdef', (string) $uri);
     }
 
     public function test_add_tag_with_other_domains_and_proto()
@@ -38,22 +38,22 @@ class AmazonLinkManipulatorTest extends TestCase
         $uri = $manipulator->process(new Uri('http://www.amazon.com/dp/B00004TZY8'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals($expected, (string)$uri);
+        $this->assertEquals($expected, (string) $uri);
 
         $uri = $manipulator->process(new Uri('http://amazon.com/dp/B00004TZY8'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals($expected, (string)$uri);
+        $this->assertEquals($expected, (string) $uri);
 
         $uri = $manipulator->process(new Uri('https://amazon.com/dp/B00004TZY8'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals($expected, (string)$uri);
+        $this->assertEquals($expected, (string) $uri);
 
         $uri = $manipulator->process(new Uri('https://www.amazon.co.uk/dp/B00004TZY8'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals('https://www.amazon.co.uk/dp/B00004TZY8', (string)$uri);
+        $this->assertEquals('https://www.amazon.co.uk/dp/B00004TZY8', (string) $uri);
     }
 
     public function test_add_tag_with_other_query_params()
@@ -63,7 +63,7 @@ class AmazonLinkManipulatorTest extends TestCase
         $uri = $manipulator->process(new Uri('https://www.amazon.com/Mattel-Games-UNO-Card-Game/dp/B00004TZY8?pd_rd_wg=WJpCt&pd_rd_r=670b61ea-72f1-4d11-aa5e-1d7f2f580948&pd_rd_w=wf5ho&ref_=pd_gw_ri&pf_rd_r=TW615HC2HPGYTBD7T649&pf_rd_p=c116cecb-5676-58e0-b306-0894a1d0149e'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals('https://www.amazon.com/Mattel-Games-UNO-Card-Game/dp/B00004TZY8?pd_rd_wg=WJpCt&pd_rd_r=670b61ea-72f1-4d11-aa5e-1d7f2f580948&pd_rd_w=wf5ho&ref_=pd_gw_ri&pf_rd_r=TW615HC2HPGYTBD7T649&pf_rd_p=c116cecb-5676-58e0-b306-0894a1d0149e&tag=abcdef', (string)$uri);
+        $this->assertEquals('https://www.amazon.com/Mattel-Games-UNO-Card-Game/dp/B00004TZY8?pd_rd_wg=WJpCt&pd_rd_r=670b61ea-72f1-4d11-aa5e-1d7f2f580948&pd_rd_w=wf5ho&ref_=pd_gw_ri&pf_rd_r=TW615HC2HPGYTBD7T649&pf_rd_p=c116cecb-5676-58e0-b306-0894a1d0149e&tag=abcdef', (string) $uri);
     }
 
     public function test_replace_existing_tag()
@@ -73,7 +73,7 @@ class AmazonLinkManipulatorTest extends TestCase
         $uri = $manipulator->process(new Uri('https://www.amazon.com/dp/B00004TZY8?tag=other'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals('https://www.amazon.com/dp/B00004TZY8?tag=abcdef', (string)$uri);
+        $this->assertEquals('https://www.amazon.com/dp/B00004TZY8?tag=abcdef', (string) $uri);
     }
 
     public function test_keep_existing_tag()
@@ -85,7 +85,7 @@ class AmazonLinkManipulatorTest extends TestCase
         $uri = $manipulator->process(new Uri('https://www.amazon.com/dp/B00004TZY8?tag=other'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals('https://www.amazon.com/dp/B00004TZY8?tag=other', (string)$uri);
+        $this->assertEquals('https://www.amazon.com/dp/B00004TZY8?tag=other', (string) $uri);
     }
 
     public function test_unhandled_doesnt_get_tag()
@@ -95,7 +95,7 @@ class AmazonLinkManipulatorTest extends TestCase
         $uri = $manipulator->process(new Uri('https://www.amazon.fr/dp/B00004TZY8'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals('https://www.amazon.fr/dp/B00004TZY8', (string)$uri);
+        $this->assertEquals('https://www.amazon.fr/dp/B00004TZY8', (string) $uri);
     }
 
     public function test_unhandled_tag_kept()
@@ -105,7 +105,7 @@ class AmazonLinkManipulatorTest extends TestCase
         $uri = $manipulator->process(new Uri('https://www.amazon.fr/dp/B00004TZY8?tag=other'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals('https://www.amazon.fr/dp/B00004TZY8?tag=other', (string)$uri);
+        $this->assertEquals('https://www.amazon.fr/dp/B00004TZY8?tag=other', (string) $uri);
     }
 
     public function test_unhandled_tag_removed()
@@ -117,7 +117,7 @@ class AmazonLinkManipulatorTest extends TestCase
         $uri = $manipulator->process(new Uri('https://www.amazon.fr/dp/B00004TZY8?tag=other'));
 
         $this->assertNotNull($uri);
-        $this->assertEquals('https://www.amazon.fr/dp/B00004TZY8', (string)$uri);
+        $this->assertEquals('https://www.amazon.fr/dp/B00004TZY8', (string) $uri);
     }
 
     public function test_does_not_touch_non_amazon_urls()

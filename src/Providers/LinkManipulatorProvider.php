@@ -1,11 +1,10 @@
 <?php
 
-
 namespace FoF\AmazonAffiliation\Providers;
 
-use FoF\AmazonAffiliation\AmazonLinkManipulator;
 use Flarum\Foundation\AbstractServiceProvider;
 use Flarum\Settings\SettingsRepositoryInterface;
+use FoF\AmazonAffiliation\AmazonLinkManipulator;
 
 class LinkManipulatorProvider extends AbstractServiceProvider
 {
@@ -15,7 +14,7 @@ class LinkManipulatorProvider extends AbstractServiceProvider
     {
         $this->app->singleton(AmazonLinkManipulator::class, function () {
             /**
-             * @var $settings SettingsRepositoryInterface
+             * @var SettingsRepositoryInterface
              */
             $settings = $this->app->make(SettingsRepositoryInterface::class);
 
@@ -34,8 +33,8 @@ class LinkManipulatorProvider extends AbstractServiceProvider
             $manipulator = new AmazonLinkManipulator();
 
             $manipulator->affiliateTags = $tags;
-            $manipulator->keepExistingTag = (bool)$settings->get('fof-amazon-affiliation.keep-existing-tag', false);
-            $manipulator->removeTagIfUnhandled = (bool)$settings->get('fof-amazon-affiliation.remove-tag-if-unhandled', false);
+            $manipulator->keepExistingTag = (bool) $settings->get('fof-amazon-affiliation.keep-existing-tag', false);
+            $manipulator->removeTagIfUnhandled = (bool) $settings->get('fof-amazon-affiliation.remove-tag-if-unhandled', false);
 
             return $manipulator;
         });
