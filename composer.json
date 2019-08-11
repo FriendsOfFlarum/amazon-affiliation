@@ -40,7 +40,7 @@
       "title": "FoF Amazon Affiliation",
       "icon": {
         "name": "fab fa-amazon",
-        "backgroundColor": "#ad343e",
+        "backgroundColor": "#e74c3c",
         "color": "#fff"
       }
     },
