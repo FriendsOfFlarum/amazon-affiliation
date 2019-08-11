@@ -18,6 +18,9 @@
   "require-dev": {
     "phpunit/phpunit": "8.3.3"
   },
+  "replaces": {
+    "flagrow/amazon-affiliation": "*"
+  },
   "authors": [
     {
       "name": "Clark Winkelmann",
