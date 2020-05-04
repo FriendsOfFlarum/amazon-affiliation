@@ -3,8 +3,8 @@
 namespace FoF\AmazonAffiliation\Tests;
 
 use FoF\AmazonAffiliation\AmazonLinkManipulator;
+use Laminas\Diactoros\Uri;
 use PHPUnit\Framework\TestCase;
-use Zend\Diactoros\Uri;
 
 class AmazonLinkManipulatorTest extends TestCase
 {

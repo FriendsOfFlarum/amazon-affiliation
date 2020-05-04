@@ -5,8 +5,8 @@ namespace FoF\AmazonAffiliation\Listeners;
 use Flarum\Formatter\Event\Rendering;
 use FoF\AmazonAffiliation\AmazonLinkManipulator;
 use Illuminate\Contracts\Events\Dispatcher;
+use Laminas\Diactoros\Uri;
 use s9e\TextFormatter\Utils;
-use Zend\Diactoros\Uri;
 
 class AlterAmazonLinks
 {
