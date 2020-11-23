@@ -13,7 +13,7 @@
   "type": "flarum-extension",
   "license": "MIT",
   "require": {
-    "flarum/core": ">=0.1.0-beta.12 <0.1.0-beta.14"
+    "flarum/core": ">=0.1.0-beta.14 <0.1.0-beta.15"
   },
   "require-dev": {
     "phpunit/phpunit": "8.3.3"
@@ -48,7 +48,7 @@
       }
     },
     "flagrow": {
-      "discuss": ""
+      "discuss": "https://discuss.flarum.org/d/12389"
     }
   }
 }
