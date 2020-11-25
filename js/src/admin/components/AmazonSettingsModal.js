@@ -14,19 +14,17 @@ export default class AmazonSettingsModal extends SettingsModal {
     form() {
         return [
             m('.Form-group', [
-                m('label', Switch.component({
+                Switch.component({
                     state: this.setting(settingsPrefix + 'keep-existing-tag')() > 0,
-                    onchange: this.setting(settingsPrefix + 'keep-existing-tag'),
-                    children: app.translator.trans(translationPrefix + 'field.keep-existing-tag'),
-                })),
+                    onchange: this.setting(settingsPrefix + 'keep-existing-tag')
+                }, app.translator.trans(translationPrefix + 'field.keep-existing-tag')),
                 m('.helpText', app.translator.trans(translationPrefix + 'field.keep-existing-tag-help')),
             ]),
             m('.Form-group', [
-                m('label', Switch.component({
+                Switch.component({
                     state: this.setting(settingsPrefix + 'remove-tag-if-unhandled')() > 0,
-                    onchange: this.setting(settingsPrefix + 'remove-tag-if-unhandled'),
-                    children: app.translator.trans(translationPrefix + 'field.remove-tag-if-unhandled'),
-                })),
+                    onchange: this.setting(settingsPrefix + 'remove-tag-if-unhandled')
+                }, app.translator.trans(translationPrefix + 'field.remove-tag-if-unhandled')),
                 m('.helpText', app.translator.trans(translationPrefix + 'field.remove-tag-if-unhandled-help')),
             ]),
             m('h2', app.translator.trans(translationPrefix + 'title.tags')),
