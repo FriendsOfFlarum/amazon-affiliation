@@ -1,6 +1,6 @@
 import app from 'flarum/app';
-import AmazonSettingsModal from './components/AmazonSettingsModal';
+import AmazonSettingsPage from './components/AmazonSettingsPage';
 
 app.initializers.add('fof/amazon-affiliation', () => {
-  app.extensionSettings['fof-amazon-affiliation'] = () => app.modal.show(AmazonSettingsModal);
+    app.extensionData.for('fof-amazon-affiliation').registerPage(AmazonSettingsPage);
 });
