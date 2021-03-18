@@ -12,11 +12,11 @@ class LinkManipulatorProvider extends AbstractServiceProvider
 
     public function register()
     {
-        $this->app->singleton(AmazonLinkManipulator::class, function () {
+        $this->container->singleton(AmazonLinkManipulator::class, function () {
             /**
              * @var SettingsRepositoryInterface
              */
-            $settings = $this->app->make(SettingsRepositoryInterface::class);
+            $settings = $this->container->make(SettingsRepositoryInterface::class);
 
             $tags = [];
 

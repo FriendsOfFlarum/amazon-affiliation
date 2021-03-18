@@ -1,5 +1,5 @@
-import app from 'flarum/app';
-import ExtensionPage from 'flarum/components/ExtensionPage';
+import app from 'flarum/common/app';
+import ExtensionPage from 'flarum/common/components/ExtensionPage';
 import Switch from 'flarum/components/Switch';
 import locales from './../amazonAssociatesLocales';
 

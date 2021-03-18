@@ -1,29 +1,24 @@
 <?php
 
-namespace FoF\AmazonAffiliation\Listeners;
+namespace FoF\AmazonAffiliation\Formatter;
 
-use Flarum\Formatter\Event\Rendering;
 use FoF\AmazonAffiliation\AmazonLinkManipulator;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Arr;
 use Laminas\Diactoros\Uri;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use s9e\TextFormatter\Renderer;
 use s9e\TextFormatter\Utils;
 
 class AlterAmazonLinks
 {
-    public function subscribe(Dispatcher $events)
+    public function __invoke(Renderer $renderer, $context, $xml, Request $request)
     {
-        $events->listen(Rendering::class, [$this, 'configure']);
-    }
-
-    public function configure(Rendering $event)
-    {
-        $event->xml = Utils::replaceAttributes($event->xml, 'URL', function ($attributes) {
+        return Utils::replaceAttributes($xml, 'URL', function ($attributes) {
             if (Arr::has($attributes, 'url')) {
                 /**
                  * @var AmazonLinkManipulator
                  */
-                $manipulator = app(AmazonLinkManipulator::class);
+                $manipulator = resolve(AmazonLinkManipulator::class);
 
                 $uri = $manipulator->process(new Uri(Arr::get($attributes, 'url')));
 
