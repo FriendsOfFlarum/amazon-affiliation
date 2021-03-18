@@ -11,7 +11,7 @@ use s9e\TextFormatter\Utils;
 
 class AlterAmazonLinks
 {
-    public function __invoke(Renderer $renderer, $context, $xml, Request $request)
+    public function __invoke(Renderer $renderer, $context, $xml)
     {
         return Utils::replaceAttributes($xml, 'URL', function ($attributes) {
             if (Arr::has($attributes, 'url')) {
