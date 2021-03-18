@@ -5,7 +5,6 @@ namespace FoF\AmazonAffiliation\Formatter;
 use FoF\AmazonAffiliation\AmazonLinkManipulator;
 use Illuminate\Support\Arr;
 use Laminas\Diactoros\Uri;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use s9e\TextFormatter\Renderer;
 use s9e\TextFormatter\Utils;
 
