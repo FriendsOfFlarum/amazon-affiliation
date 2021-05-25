@@ -6,10 +6,10 @@ A [Flarum](http://flarum.org) extension. This extension allows you to inject you
 
 ### Installation
 
-Use [Bazaar](https://discuss.flarum.org/d/5151-flagrow-bazaar-the-extension-marketplace) or install manually with composer:
+Install with composer:
 
 ```sh
-composer require fof/amazon-affiliation
+composer require fof/amazon-affiliation:"*"
 ```
 
 ### Updating

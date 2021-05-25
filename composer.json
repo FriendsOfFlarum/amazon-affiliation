@@ -25,7 +25,7 @@
         }
     ],
     "require": {
-        "flarum/core": "^0.1.0-beta.16"
+        "flarum/core": "^1.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "8.3.3"
@@ -58,7 +58,10 @@
                 "name": "fab fa-amazon",
                 "backgroundColor": "#e74c3c",
                 "color": "#fff"
-            }
+            },
+            "optional-dependencies": [
+              "fof/formatting"
+            ]
         },
         "flagrow": {
             "discuss": "https://discuss.flarum.org/d/12389"
