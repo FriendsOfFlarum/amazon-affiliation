@@ -18,9 +18,9 @@ use s9e\TextFormatter\Configurator;
 
 return [
     (new Extend\Frontend('admin'))
-        ->js(__DIR__ . '/js/dist/admin.js'),
+        ->js(__DIR__.'/js/dist/admin.js'),
 
-    new Extend\Locales(__DIR__ . '/resources/locale'),
+    new Extend\Locales(__DIR__.'/resources/locale'),
 
     (new Extend\Formatter())
         ->render(Formatter\AlterAmazonLinks::class),
@@ -33,7 +33,7 @@ return [
             foreach ($event->settings as $key => $setting) {
                 if (strpos($key, 'fof-amazon-affiliation.affiliate-tag.') === 0) {
                     resolve('flarum.formatter')->flush();
-    
+
                     return;
                 }
             }
