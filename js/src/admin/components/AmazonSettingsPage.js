@@ -23,6 +23,7 @@ export default class AmazonSettingsPage extends ExtensionPage {
                         app.translator.trans(translationPrefix + 'field.keep-existing-tag')
                     ),
                     m('.helpText', app.translator.trans(translationPrefix + 'field.keep-existing-tag-help')),
+                    m('.helpText', app.translator.trans(translationPrefix + 'field.help-mediaembed')),
                 ]),
                 m('.Form-group', [
                     Switch.component(
@@ -33,8 +34,10 @@ export default class AmazonSettingsPage extends ExtensionPage {
                         app.translator.trans(translationPrefix + 'field.remove-tag-if-unhandled')
                     ),
                     m('.helpText', app.translator.trans(translationPrefix + 'field.remove-tag-if-unhandled-help')),
+                    m('.helpText', app.translator.trans(translationPrefix + 'field.help-mediaembed')),
                 ]),
                 m('h2', app.translator.trans(translationPrefix + 'title.tags')),
+                m('.helpText', app.translator.trans(translationPrefix + 'title.tags-mediaembed')),
                 locales.map((locale) =>
                     m('.Form-group', [
                         m('label', app.translator.trans(translationPrefix + 'field.tag', locale)),
