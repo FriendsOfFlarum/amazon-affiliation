@@ -28,7 +28,7 @@
         "flarum/core": "^1.0.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "8.3.3"
+        "phpunit/phpunit": "^8.3.3"
     },
     "replace": {
         "flagrow/amazon-affiliation": "*"
