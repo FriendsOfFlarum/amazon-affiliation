@@ -30,7 +30,7 @@ class AmazonLinkManipulator
         $matches = [];
 
         if (preg_match('~^(?:www\.)?(amazon\.((?:[a-z]{2,3}\.)?[a-z]{2,3}))$~', $uri->getHost(), $matches) !== 1) {
-            return;
+            return null;
         }
 
         $amazonDomain = $matches[1];
