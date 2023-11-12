@@ -62,6 +62,6 @@ return [
             // $params['AMAZON_ASSOCIATE_TAG_MX'] = $settings->get($prefix.'com.mx', '');
             // $params['AMAZON_ASSOCIATE_TAG_AU'] = $settings->get($prefix.'com.au', '');
 
-            extract($configurator->finalize());
+            //extract($configurator->finalize());
         }),
 ];

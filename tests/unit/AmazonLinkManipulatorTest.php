@@ -11,9 +11,9 @@
 
 namespace FoF\AmazonAffiliation\Tests;
 
+use Flarum\Testing\unit\TestCase;
 use FoF\AmazonAffiliation\AmazonLinkManipulator;
 use Laminas\Diactoros\Uri;
-use PHPUnit\Framework\TestCase;
 
 class AmazonLinkManipulatorTest extends TestCase
 {
