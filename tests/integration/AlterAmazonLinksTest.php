@@ -15,6 +15,10 @@ use Carbon\Carbon;
 use Flarum\Extend;
 use Flarum\Testing\integration\RetrievesAuthorizedUsers;
 use Flarum\Testing\integration\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use Flarum\User\User;
+use Flarum\Discussion\Discussion;
+use Flarum\Post\Post;
 
 /**
  * End-to-end test for the AlterAmazonLinks render callback.
@@ -46,19 +50,17 @@ class AlterAmazonLinksTest extends TestCase
         );
 
         $this->prepareDatabase([
-            'users' => [$this->normalUser()],
-            'discussions' => [
+            User::class => [$this->normalUser()],
+            Discussion::class => [
                 ['id' => 1, 'title' => 'Test', 'slug' => 'test', 'user_id' => 2, 'created_at' => Carbon::now(), 'comment_count' => 1],
             ],
-            'posts' => [
+            Post::class => [
                 ['id' => 1, 'discussion_id' => 1, 'user_id' => 2, 'type' => 'comment', 'content' => '<t><p>Opener.</p></t>', 'created_at' => Carbon::now()],
             ],
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function amazon_link_in_post_gets_affiliate_tag()
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
@@ -69,9 +71,7 @@ class AlterAmazonLinksTest extends TestCase
         $this->assertStringContainsString('https://www.amazon.com/dp/B00004TZY8?tag=abcdef', $html);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function amazon_link_without_www_is_normalized_and_tagged()
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
@@ -82,9 +82,7 @@ class AlterAmazonLinksTest extends TestCase
         $this->assertStringContainsString('https://www.amazon.com/dp/B00004TZY8?tag=abcdef', $html);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existing_tag_is_replaced_by_default()
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
@@ -96,9 +94,7 @@ class AlterAmazonLinksTest extends TestCase
         $this->assertStringNotContainsString('href="https://www.amazon.com/dp/B00004TZY8?tag=someoneelse"', $html);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existing_tag_is_kept_when_setting_enabled()
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
@@ -111,9 +107,7 @@ class AlterAmazonLinksTest extends TestCase
         $this->assertStringNotContainsString('tag=abcdef', $html);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function unhandled_domain_tag_removed_when_setting_enabled()
     {
         // No tag configured for .fr, so it is "unhandled".
@@ -127,9 +121,7 @@ class AlterAmazonLinksTest extends TestCase
         $this->assertStringNotContainsString('href="https://www.amazon.fr/dp/B00004TZY8?tag=someoneelse"', $html);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function non_amazon_link_is_left_untouched()
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');

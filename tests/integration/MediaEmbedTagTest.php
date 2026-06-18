@@ -15,6 +15,10 @@ use Carbon\Carbon;
 use Flarum\Extend;
 use Flarum\Testing\integration\RetrievesAuthorizedUsers;
 use Flarum\Testing\integration\TestCase;
+use PHPUnit\Framework\Attributes\Test;
+use Flarum\User\User;
+use Flarum\Discussion\Discussion;
+use Flarum\Post\Post;
 
 /**
  * End-to-end test for the s9e MediaEmbed path.
@@ -50,19 +54,17 @@ class MediaEmbedTagTest extends TestCase
         );
 
         $this->prepareDatabase([
-            'users' => [$this->normalUser()],
-            'discussions' => [
+            User::class => [$this->normalUser()],
+            Discussion::class => [
                 ['id' => 1, 'title' => 'Test', 'slug' => 'test', 'user_id' => 2, 'created_at' => Carbon::now(), 'comment_count' => 1],
             ],
-            'posts' => [
+            Post::class => [
                 ['id' => 1, 'discussion_id' => 1, 'user_id' => 2, 'type' => 'comment', 'content' => '<t><p>Opener.</p></t>', 'created_at' => Carbon::now()],
             ],
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function amazon_url_is_embedded_as_iframe()
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
@@ -75,9 +77,7 @@ class MediaEmbedTagTest extends TestCase
         $this->assertStringContainsString('B00004TZY8', $html);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function embed_carries_the_com_affiliate_tag()
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
@@ -89,9 +89,7 @@ class MediaEmbedTagTest extends TestCase
         $this->assertStringContainsString('t=abcdef', $html, "Affiliate tag missing from embed:\n".$html);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function embed_carries_the_uk_affiliate_tag()
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.co.uk', 'uktag');
@@ -102,9 +100,7 @@ class MediaEmbedTagTest extends TestCase
         $this->assertStringContainsString('t=uktag', $html, "UK affiliate tag missing from embed:\n".$html);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function embed_without_configured_tag_renders_empty_tag()
     {
         // No tag configured for .com. The embed still renders; the tag param is
