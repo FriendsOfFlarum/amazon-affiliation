@@ -16,8 +16,13 @@ use Psr\Http\Message\UriInterface;
 
 class AmazonLinkManipulator
 {
+    /** @var array<string, string> */
     public $affiliateTags = [];
+
+    /** @var bool */
     public $keepExistingTag = false;
+
+    /** @var bool */
     public $removeTagIfUnhandled = false;
 
     /**
