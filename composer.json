@@ -25,15 +25,13 @@
         }
     ],
     "require": {
-        "flarum/core": "^2.0.0-beta"
+        "flarum/core": "^2.0.0"
     },
     "require-dev": {
-        "flarum/phpstan": "^2.0.0-beta",
-        "flarum/testing": "^2.0.0-beta",
-        "fof/formatting": "*"
-    },
-    "replace": {
-        "flagrow/amazon-affiliation": "*"
+        "flarum/phpstan": "^2.0.0",
+        "flarum/testing": "^2.0.0",
+        "fof/formatting": "*",
+        "fof/rich-text": "*"
     },
     "authors": [
         {
@@ -94,5 +92,7 @@
         "psr-4": {
             "FoF\\AmazonAffiliation\\Tests\\": "tests/"
         }
-    }
+    },
+    "minimum-stability": "beta",
+    "prefer-stable": true
 }

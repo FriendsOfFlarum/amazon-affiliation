@@ -60,15 +60,23 @@ class AlterAmazonLinksTest extends TestCase
         ]);
     }
 
+    // NOTE: Amazon *product* URLs (/dp/, /gp/product/) are turned into product
+    // cards by AmazonProductCard, not rewritten here — see MediaEmbedTagTest.
+    // These tests therefore exercise the link-rewriting path with links the card
+    // does not claim: non-product URLs (search/category pages). The keep /
+    // remove-tag settings only apply to this path, as documented in the README.
+
     #[Test]
     public function amazon_link_in_post_gets_affiliate_tag()
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
 
-        $html = $this->postReplyAndGetContentHtml('Check out https://www.amazon.com/dp/B00004TZY8 for the game.');
+        // Non-product Amazon URL: stays a link and is tagged by the manipulator.
+        $html = $this->postReplyAndGetContentHtml('Check out https://www.amazon.com/s?k=board+game for ideas.');
 
+        $this->assertStringNotContainsString('AmazonProductCard', $html);
         $this->assertStringContainsString('tag=abcdef', $html);
-        $this->assertStringContainsString('https://www.amazon.com/dp/B00004TZY8?tag=abcdef', $html);
+        $this->assertStringContainsString('https://www.amazon.com/s?k=board+game&amp;tag=abcdef', $html);
     }
 
     #[Test]
@@ -77,9 +85,9 @@ class AlterAmazonLinksTest extends TestCase
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
 
         // http + no www in the source; the rendered URL should be normalized.
-        $html = $this->postReplyAndGetContentHtml('Link: http://amazon.com/dp/B00004TZY8 here.');
+        $html = $this->postReplyAndGetContentHtml('Link: http://amazon.com/gp/bestsellers here.');
 
-        $this->assertStringContainsString('https://www.amazon.com/dp/B00004TZY8?tag=abcdef', $html);
+        $this->assertStringContainsString('https://www.amazon.com/gp/bestsellers?tag=abcdef', $html);
     }
 
     #[Test]
@@ -87,11 +95,12 @@ class AlterAmazonLinksTest extends TestCase
     {
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
 
-        $html = $this->postReplyAndGetContentHtml('See https://www.amazon.com/dp/B00004TZY8?tag=someoneelse now.');
+        $html = $this->postReplyAndGetContentHtml('See https://www.amazon.com/s?k=uno&tag=someoneelse now.');
 
-        // Only the href is rewritten; the link text still shows the original URL.
-        $this->assertStringContainsString('href="https://www.amazon.com/dp/B00004TZY8?tag=abcdef"', $html);
-        $this->assertStringNotContainsString('href="https://www.amazon.com/dp/B00004TZY8?tag=someoneelse"', $html);
+        // Only the href is rewritten; the link text still shows the original URL,
+        // so assert on the href attribute specifically.
+        $this->assertStringContainsString('href="https://www.amazon.com/s?k=uno&amp;tag=abcdef"', $html);
+        $this->assertStringNotContainsString('href="https://www.amazon.com/s?k=uno&amp;tag=someoneelse"', $html);
     }
 
     #[Test]
@@ -100,25 +109,27 @@ class AlterAmazonLinksTest extends TestCase
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
         $this->setting('fof-amazon-affiliation.keep-existing-tag', true);
 
-        $html = $this->postReplyAndGetContentHtml('See https://www.amazon.com/dp/B00004TZY8?tag=someoneelse now.');
+        $html = $this->postReplyAndGetContentHtml('See https://www.amazon.com/s?k=uno&tag=someoneelse now.');
 
         // keepExistingTag leaves the original tag on the href untouched.
-        $this->assertStringContainsString('href="https://www.amazon.com/dp/B00004TZY8?tag=someoneelse"', $html);
+        $this->assertStringContainsString('href="https://www.amazon.com/s?k=uno&amp;tag=someoneelse"', $html);
         $this->assertStringNotContainsString('tag=abcdef', $html);
     }
 
     #[Test]
     public function unhandled_domain_tag_removed_when_setting_enabled()
     {
-        // No tag configured for .fr, so it is "unhandled".
+        // A non-product .com.au URL: not a card (no /dp/), and no tag configured
+        // for .com.au, so it is "unhandled" and its stray tag is stripped.
         $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
         $this->setting('fof-amazon-affiliation.remove-tag-if-unhandled', true);
 
-        $html = $this->postReplyAndGetContentHtml('See https://www.amazon.fr/dp/B00004TZY8?tag=someoneelse now.');
+        $html = $this->postReplyAndGetContentHtml('See https://www.amazon.com.au/s?k=uno&tag=someoneelse now.');
 
+        $this->assertStringNotContainsString('AmazonProductCard', $html);
         // Only the href is rewritten; the link text still shows the original URL.
-        $this->assertStringContainsString('href="https://www.amazon.fr/dp/B00004TZY8"', $html);
-        $this->assertStringNotContainsString('href="https://www.amazon.fr/dp/B00004TZY8?tag=someoneelse"', $html);
+        $this->assertStringContainsString('href="https://www.amazon.com.au/s?k=uno"', $html);
+        $this->assertStringNotContainsString('href="https://www.amazon.com.au/s?k=uno&amp;tag=someoneelse"', $html);
     }
 
     #[Test]

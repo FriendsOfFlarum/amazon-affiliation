@@ -24,7 +24,7 @@ A separate tag is configured per marketplace (`.com`, `.co.uk`, `.de`, `.fr`, �
 - **Keep or replace existing tags** — by default an existing `tag` in a link is replaced with yours; optionally keep the original instead.
 - **Strip tags on uncovered marketplaces** — optionally remove affiliate tags from links to marketplaces you haven't configured, so no one else's tag survives.
 - **URL normalisation** — `http` → `https` and bare hosts gain the `www.` subdomain.
-- **Works with rich embeds** — when used alongside [fof/formatting](https://github.com/FriendsOfFlarum/formatting) with MediaEmbed enabled, the affiliate tag is also injected into the Amazon product embed (see below).
+- **Product cards** — Amazon product URLs become a compact card linking to the tagged product page (see below).
 
 ## Installation
 
@@ -51,14 +51,17 @@ All settings live on the extension's page in the admin panel.
 | **Keep existing tags** | When enabled, a link that already carries a `tag` keeps it; otherwise your configured tag replaces it. |
 | **Remove tags on uncovered links** | When enabled, links to marketplaces you haven't configured have any existing `tag` stripped. By default such links are left untouched. |
 
-## Rich embeds (fof/formatting + MediaEmbed)
+## Product cards
 
-If you also run [fof/formatting](https://github.com/FriendsOfFlarum/formatting) with its **MediaEmbed** plugin enabled, Amazon product URLs are turned into rich embeds rather than plain links. This extension injects your affiliate tag into those embeds as well, so embedded products are still attributed to your account.
+Amazon **product** URLs (`/dp/…` and `/gp/product/…`) are turned into a compact, self-contained product-link card instead of a plain link. The card links straight to the canonical product URL carrying your affiliate tag, so the click is attributed to your account.
 
-A couple of things to be aware of, both upstream limitations of [s9e\TextFormatter](https://github.com/s9e/TextFormatter)'s MediaEmbed:
+This replaces the old MediaEmbed iframe embed. [s9e\TextFormatter](https://github.com/s9e/TextFormatter) removed its built-in Amazon site, and the Amazon affiliate *iframe widget* it relied on was [retired by Amazon in 2022](https://affiliate-program.amazon.com/help/node/topic/GJV3KJAYNY5BQYPH) (it renders blank). A tagged product link is the mechanism Amazon still supports, so the card is built from that. Posts authored under older versions of this extension — whose embeds were stored as MediaEmbed tags — automatically render as cards too.
 
-- **Embeds always strip any existing tag** and use yours — the "keep existing tags" setting only applies to plain links.
-- **Some marketplaces are not supported as embeds:** CN, BR, MX and AU. Links to those always render as plain links and follow the settings above instead.
+A couple of things to be aware of:
+
+- **Cards always use your configured tag** for the marketplace — the "keep existing tags" setting only applies to plain (non-product) links.
+- **All marketplaces are supported**, including CN, BR, MX and AU. (The old iframe embed couldn't handle those; the card builds a plain tagged link, so they work too.)
+- **Prefer plain links?** Turn off **Display Amazon product links as a rich product card** in the settings and product URLs stay plain links, tagged like any other Amazon link.
 
 ## Links
 

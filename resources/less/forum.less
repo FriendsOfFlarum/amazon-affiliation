@@ -1,0 +1,40 @@
+.AmazonProductCard {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 8px 14px;
+  border: 1px solid var(--control-bg-darken-5, rgba(0, 0, 0, 0.1));
+  border-radius: var(--border-radius, 4px);
+  background: var(--control-bg, rgba(0, 0, 0, 0.05));
+  color: var(--text-color, inherit);
+  text-decoration: none;
+  line-height: 1.3;
+
+  &:hover {
+    background: var(--control-bg-darken-5, rgba(0, 0, 0, 0.1));
+    text-decoration: none;
+  }
+
+  &-icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    background: url(https://www.amazon.com/favicon.ico) center / contain no-repeat;
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &-title {
+    font-weight: bold;
+  }
+
+  &-asin {
+    font-size: 85%;
+    color: var(--muted-color, inherit);
+  }
+}
