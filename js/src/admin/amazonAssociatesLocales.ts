@@ -1,5 +1,11 @@
+export interface AmazonAssociatesLocale {
+  domain: string;
+  name: string;
+  central: string;
+}
+
 // List based on the country switcher of the Amazon Associates homepage
-export default [
+const locales: AmazonAssociatesLocale[] = [
   {
     domain: 'com',
     name: 'United States',
@@ -66,3 +72,5 @@ export default [
     central: 'https://affiliate-program.amazon.com.au/',
   },
 ];
+
+export default locales;
