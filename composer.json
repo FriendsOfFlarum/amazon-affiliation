@@ -25,11 +25,12 @@
         }
     ],
     "require": {
-        "flarum/core": "^1.2.0"
+        "flarum/core": "^1.8.0"
     },
     "require-dev": {
         "flarum/phpstan": "*",
-        "flarum/testing": "^1.0.0"
+        "flarum/testing": "^1.0.0",
+        "fof/formatting": "*"
     },
     "replace": {
         "flagrow/amazon-affiliation": "*"
@@ -63,9 +64,6 @@
             "optional-dependencies": [
                 "fof/formatting"
             ]
-        },
-        "flagrow": {
-            "discuss": "https://discuss.flarum.org/d/12389"
         },
         "flarum-cli": {
             "modules": {

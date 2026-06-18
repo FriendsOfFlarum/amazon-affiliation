@@ -22,6 +22,10 @@ return [
 
     new Extend\Locales(__DIR__.'/resources/locale'),
 
+    (new Extend\Settings())
+        ->default('fof-amazon-affiliation.keep-existing-tag', false)
+        ->default('fof-amazon-affiliation.remove-tag-if-unhandled', false),
+
     (new Extend\Formatter())
         ->render(Formatter\AlterAmazonLinks::class),
 
