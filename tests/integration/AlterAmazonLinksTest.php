@@ -144,6 +144,40 @@ class AlterAmazonLinksTest extends TestCase
     }
 
     /**
+     * Rendering runs on stored XML, which the parser never checks again. A link
+     * Diactoros can't represent (another scheme, or malformed) must be left as
+     * it is rather than failing every page showing the post (issue #29).
+     */
+    #[Test]
+    public function stored_links_diactoros_cannot_parse_are_left_untouched()
+    {
+        $this->setting('fof-amazon-affiliation.affiliate-tag.com', 'abcdef');
+
+        $this->prepareDatabase([
+            Post::class => [
+                ['id' => 2, 'discussion_id' => 1, 'user_id' => 2, 'type' => 'comment', 'created_at' => Carbon::now(), 'content' => '<r><p>'
+                    .'<URL url="ftp://example.com/a.zip">ftp</URL> '
+                    .'<URL url="irc://irc.example.com/flarum">irc</URL> '
+                    .'<URL url="http://:80/">malformed</URL> '
+                    .'<URL url="https://www.amazon.com/s?k=uno">amazon</URL>'
+                    .'</p></r>'],
+            ],
+        ]);
+
+        $response = $this->send($this->request('GET', '/api/posts/2', ['authenticatedAs' => 2]));
+
+        $this->assertEquals(200, $response->getStatusCode(), (string) $response->getBody());
+
+        $html = json_decode((string) $response->getBody(), true)['data']['attributes']['contentHtml'];
+
+        $this->assertStringContainsString('href="ftp://example.com/a.zip"', $html);
+        $this->assertStringContainsString('href="irc://irc.example.com/flarum"', $html);
+        $this->assertStringContainsString('href="http://:80/"', $html);
+        // The Amazon link in the same post is still rewritten.
+        $this->assertStringContainsString('tag=abcdef', $html);
+    }
+
+    /**
      * POST a reply to discussion 1 and return its rendered `contentHtml`.
      */
     private function postReplyAndGetContentHtml(string $content): string

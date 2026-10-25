@@ -13,6 +13,7 @@ namespace FoF\AmazonAffiliation\Formatter;
 
 use FoF\AmazonAffiliation\AmazonLinkManipulator;
 use Illuminate\Support\Arr;
+use InvalidArgumentException;
 use Laminas\Diactoros\Uri;
 use s9e\TextFormatter\Renderer;
 use s9e\TextFormatter\Utils;
@@ -33,7 +34,14 @@ class AlterAmazonLinks
                  */
                 $manipulator = resolve(AmazonLinkManipulator::class);
 
-                $uri = $manipulator->process(new Uri(Arr::get($attributes, 'url')));
+                try {
+                    $uri = $manipulator->process(new Uri(Arr::get($attributes, 'url')));
+                } catch (InvalidArgumentException) {
+                    // Diactoros only takes http(s) and well-formed URLs. This runs
+                    // on stored XML, which can hold an ftp: or malformed link, and
+                    // none of those is an Amazon link to rewrite.
+                    return $attributes;
+                }
 
                 if ($uri) {
                     $attributes['url'] = (string) $uri;
